@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-helloword';
+  inputValue = 50;
+
+  checkModuleValue() {
+    console.log('input : ', this.inputValue);
+  }
 }
