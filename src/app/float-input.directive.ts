@@ -10,7 +10,17 @@ export class FloatInputDirective implements ControlValueAccessor {
   @Input() decimalPlaces = 3;
 
   private regex: RegExp = new RegExp(/^\d*\.?\d{0,2}$/g);
-  private specialKeys: Array<string> = ['Backspace', 'Tab', 'End', 'Home', 'ArrowLeft', 'ArrowRight', 'Del', 'Delete'];
+  private specialKeys: Array<string> = [  
+    'Backspace',
+    'Tab',
+    'End',
+    'Home',
+    'ArrowLeft',
+    'ArrowRight',
+    'Del',
+    'Delete',
+    'Control'
+  ];
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
@@ -40,13 +50,16 @@ export class FloatInputDirective implements ControlValueAccessor {
   registerOnTouched(fn: any) {
     this.onTouch = fn
   }
-  
+
   @HostListener('keydown', ['$event'])
   onKeyDown(event: KeyboardEvent) {
     // Allow Backspace, tab, end, and home keys
-    if (this.specialKeys.indexOf(event.key) !== -1) {
+    if ((this.specialKeys.indexOf(event.key) !== -1) ||
+        // allow meta char keys combinations
+        ((event.ctrlKey || event.metaKey) && !String(event.key).match(this.regex))) {
       return;
     }
+
     let current: string = this.el.nativeElement.value;
     let next: string = current.concat(event.key);
     if (next && !String(next).match(this.regex)) {
@@ -64,6 +77,8 @@ export class FloatInputDirective implements ControlValueAccessor {
     if (inputVal) {
       this.renderer.setProperty(this.el.nativeElement, 'value', modifiedVal);
       this.value = modifiedVal;
+    } else {
+      this.value = parseFloat('0').toFixed(this.decimalPlaces);
     }
   }
 }
