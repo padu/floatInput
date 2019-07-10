@@ -14,33 +14,30 @@ export class FloatInputDirective implements ControlValueAccessor {
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
-  onChange: any = () => {console.log('onChange');}
-  onTouch: any = () => {console.log('onChange');}
+  onChange: any = () => {}
+  onTouch: any = () => {}
 
   val= ""; // this is the updated value that the class accesses
 
-  set value(val){  // this value is updated by programmatic changes if( val !== undefined && this.val !== val){
+  set value(val) {  // this value is updated by programmatic changes if( val !== undefined && this.val !== val){
     this.val = val
     this.onChange(val)
     this.onTouch(val)
   }
 
   // this method sets the value programmatically
-  writeValue(value: any){ 
+  writeValue(value: any) {
     this.value = value;
     this.setViewValue(value);
-    console.log('writeValue : ',value);
   }
 
   // upon UI element value changes, this method gets triggered
   registerOnChange(fn: any) {
-    console.log('registerOnChange : ');
     this.onChange = fn
   }
 
   // upon touching the element, this method gets triggered
-  registerOnTouched(fn: any){
-    console.log('registerOnTouched : ');
+  registerOnTouched(fn: any) {
     this.onTouch = fn
   }
   
