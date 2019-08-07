@@ -1,11 +1,52 @@
-<label for="floatInput">Float Input : </label> 
-<input 
-    id="floatInput" 
-    type="text" 
-    floatInput
-    inputmode="decimal"
-    placeholder="0.00"
-    decimalPlaces="2"
-    [(ngModel)]="inputValue"
-    />
-<button (click)="checkModuleValue()">Check</button>
+<div>
+    <label for="noInput">Number Input : </label> 
+    <input 
+        id="noInput" 
+        type="text" 
+        floatInput
+        inputmode="decimal"
+        placeholder="00"
+        decimalPlaces="0"
+        [(ngModel)]="inputNo"
+        />
+
+    <label for="floatInput">Float Input : </label> 
+    <input 
+        id="floatInput" 
+        type="text" 
+        floatInput
+        inputmode="decimal"
+        placeholder="0.00"
+        decimalPlaces="2"
+        [(ngModel)]="inputValue"
+        />
+    <button (click)="checkModuleValue()">Check</button>
+</div>
+<!-- <div style="margin-top: 20px;">
+    <label>
+        Start Time:
+        <input
+            [(ngModel)]="startTime"
+            #ctrl1="ngModel"
+            [customMax]
+            [maxDate]="endTime"
+            [owlDateTime]="dt1"
+            [owlDateTimeTrigger]="dt1">
+            <p>Value: {{ startTime }}</p>
+            <p>Valid: {{ ctrl1.valid }}</p>        
+        <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+    </label>
+    <label>
+        End Time:
+        <input
+            [(ngModel)]="endTime"
+            #ctrl2="ngModel"
+            [customMin]
+            [minDate]="startTime"
+            [owlDateTime]="dt2"
+            [owlDateTimeTrigger]="dt2">
+            <p>Value: {{ endTime }}</p>
+            <p>Valid: {{ ctrl2.valid }}</p>
+        <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+    </label>
+</div> -->

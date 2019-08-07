@@ -10,7 +10,7 @@ export class FloatInputDirective implements ControlValueAccessor {
   @Input() decimalPlaces = 3;
 
   private regex: RegExp = new RegExp(/^\d*\.?\d{0,2}$/g);
-  private specialKeys: Array<string> = [  
+  private specialKeys: Array<string> = [
     'Backspace',
     'Tab',
     'End',
